@@ -1,78 +1,96 @@
-import { useEffect, useState } from 'react';
-import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react';
-// import { supabase } from '../lib/supabase';
-
-interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  category: string;
-  created_at: string;
-}
+import { useState } from "react";
+import { Calendar, ArrowRight, Tag } from "lucide-react";
 
 export default function Blog() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const loading = false;
+  
+  const posts = [
+    {
+      id: 1,
+      title: "5 Exercises to Reduce Back Pain",
+      excerpt:
+        "Simple physiotherapy exercises you can do daily to relieve lower back pain and improve posture.",
+      category: "Back Pain",
+      created_at: "2026-03-20",
+    },
+    {
+      id: 2,
+      title: "How to Recover Faster from Sports Injuries",
+      excerpt:
+        "Learn effective recovery techniques including stretching, rest, and physiotherapy care.",
+      category: "Sports Injury",
+      created_at: "2026-03-18",
+    },
+    {
+      id: 3,
+      title: "Neck Pain Causes & Treatment",
+      excerpt:
+        "Understand why neck pain happens and how physiotherapy helps in long-term recovery.",
+      category: "Neck Pain",
+      created_at: "2026-03-15",
+    },
+    {
+      id: 4,
+      title: "Benefits of Physiotherapy After Surgery",
+      excerpt:
+        "Post-surgery rehabilitation is important. Here’s how physiotherapy speeds up healing.",
+      category: "Rehabilitation",
+      created_at: "2026-03-10",
+    },
+    {
+      id: 5,
+      title: "Home Remedies for Knee Pain",
+      excerpt:
+        "Try these safe and effective home remedies along with physiotherapy exercises.",
+      category: "Knee Pain",
+      created_at: "2026-03-05",
+    },
+  ];
 
-  useEffect(() => {
-    // fetchPosts();
-  }, []);
+  // ✅ Categories
+  const categories = ["All", ...new Set(posts.map((p) => p.category))];
 
-  // const fetchPosts = async () => {
-  //   try {
-  //     const { data } = await supabase
-  //       .from('blog_posts')
-  //       .select('*')
-  //       .eq('is_published', true)
-  //       .order('created_at', { ascending: false });
-
-  //     if (data) setPosts(data);
-  //   } catch (error) {
-  //     console.error('Error fetching blog posts:', error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  const categories = ['All', ...Array.from(new Set(posts.map((post) => post.category)))];
-
+  // ✅ Filter
   const filteredPosts =
-    selectedCategory === 'All'
+    selectedCategory === "All"
       ? posts
-      : posts.filter((post) => post.category === selectedCategory);
+      : posts.filter((p) => p.category === selectedCategory);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
   return (
     <div className="min-h-screen">
-      <section className="relative bg-gradient-to-br from-blue-600 to-teal-600 text-white pt-32 pb-20 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Health & Wellness Blog</h1>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Expert advice, recovery tips, and the latest insights in physiotherapy and rehabilitation
-          </p>
-        </div>
+      {/* HERO */}
+      <section className="bg-gradient-to-br from-blue-600 to-teal-600 text-white pt-32 pb-20 px-4 text-center">
+        <h1 className="text-5xl font-bold mb-6">
+          Physiotherapy Health Blog
+        </h1>
+        <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+          Expert tips, recovery guides, and wellness advice for a pain-free life
+        </p>
       </section>
 
+      {/* BLOG LIST */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
+          
+          {/* CATEGORY FILTER */}
           <div className="flex flex-wrap gap-3 mb-12 justify-center">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 rounded-full font-medium transition-all ${
+                className={`px-6 py-2 rounded-full ${
                   selectedCategory === category
-                    ? 'bg-gradient-to-r from-blue-600 to-teal-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                    ? "bg-blue-600 text-white"
+                    : "bg-white text-gray-700"
                 }`}
               >
                 {category}
@@ -80,78 +98,65 @@ export default function Blog() {
             ))}
           </div>
 
-          {loading ? (
-            <div className="text-center py-12">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-              <p className="mt-4 text-gray-600">Loading articles...</p>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.map((post) => (
-                <article
-                  key={post.id}
-                  className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all group overflow-hidden"
-                >
-                  <div className="h-48 bg-gradient-to-br from-blue-100 to-teal-100 flex items-center justify-center text-6xl">
-                    📝
+          {/* BLOG CARDS */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredPosts.map((post) => (
+              <div
+                key={post.id}
+                className="bg-white rounded-xl shadow hover:shadow-lg transition"
+              >
+                <div className="h-40 flex items-center justify-center text-5xl bg-blue-100">
+                  🏥
+                </div>
+
+                <div className="p-5">
+                  <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                    <Tag size={14} /> {post.category}
+                    <Calendar size={14} className="ml-3" />
+                    {formatDate(post.created_at)}
                   </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-medium">
-                        <Tag className="h-3 w-3 mr-1" />
-                        {post.category}
-                      </span>
-                      <span className="flex items-center text-xs text-gray-500">
-                        <Calendar className="h-3 w-3 mr-1" />
-                        {formatDate(post.created_at)}
-                      </span>
-                    </div>
 
-                    <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
-                      {post.title}
-                    </h2>
+                  <h2 className="font-bold text-lg mb-2">
+                    {post.title}
+                  </h2>
 
-                    <p className="text-gray-600 leading-relaxed mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
+                  <p className="text-gray-600 mb-3">
+                    {post.excerpt}
+                  </p>
 
-                    <button className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors">
-                      Read More
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
-                </article>
-              ))}
-            </div>
-          )}
+                  <button className="text-blue-600 flex items-center gap-1">
+                    Read More <ArrowRight size={16} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
 
-          {filteredPosts.length === 0 && !loading && (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">No articles found in this category.</p>
-            </div>
+          {/* EMPTY */}
+          {filteredPosts.length === 0 && (
+            <p className="text-center mt-10 text-gray-500">
+              No articles found
+            </p>
           )}
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">Stay Informed</h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Subscribe to our newsletter for the latest health tips, recovery guides, and clinic updates
-          </p>
-          <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-6 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
-            />
-            <button
-              type="submit"
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
-            >
-              Subscribe
-            </button>
-          </form>
+      {/* NEWSLETTER */}
+      <section className="py-20 bg-white text-center">
+        <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+        <p className="text-gray-600 mb-6">
+          Get physiotherapy tips and health advice directly to your inbox
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="Enter email"
+            className="border px-4 py-2 rounded w-full"
+          />
+          <button className="bg-blue-600 text-white px-6 py-2 rounded">
+            Subscribe
+          </button>
         </div>
       </section>
     </div>
