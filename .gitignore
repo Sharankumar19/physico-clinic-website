@@ -1,0 +1,12 @@
+# Node modules
+node_modules/
+
+# Mac system files
+.DS_Store
+
+# Build files
+dist/
+build/
+
+# Environment files
+.env
