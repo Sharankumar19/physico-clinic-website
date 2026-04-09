@@ -45,7 +45,7 @@ interface Testimonial {
 export default function Testimonials() {
 
   const stats = [
-    { value: '5000+', label: 'Happy Patients' },
+    { value: '2000+', label: 'Happy Patients' },
     { value: '4.9/5', label: 'Average Rating' },
     { value: '98%', label: 'Satisfaction Rate' },
     { value: '95%', label: 'Would Recommend' },

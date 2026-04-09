@@ -190,7 +190,7 @@ export default function About() {
           </p>
           <div className="grid md:grid-cols-3 gap-8 mt-12">
             <div className="bg-white p-6 rounded-xl shadow-sm">
-              <div className="text-4xl font-bold text-blue-600 mb-2">5000+</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">2000+</div>
               <div className="text-gray-600">Patients Treated</div>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-sm">

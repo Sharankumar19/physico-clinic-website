@@ -9,7 +9,7 @@ const reviews = [
     service: "Back Pain Treatment",
     rating: 5,
     review:
-      "After just 3 sessions, my chronic back pain has improved significantly.",
+      "After just 3 sessions, my chronic back pain has reduced significantly.",
   },
   {
     id: "2",
@@ -24,7 +24,7 @@ const reviews = [
     name: "Abirami",
     service: "Neck Pain Treatment",
     rating: 5,
-    review: "After 5 sessions, my pain has improved a lot. Very satisfied.",
+    review: "After 5 sessions, my pain has reduced a lot. Very satisfied.",
   },
 ];
 
@@ -63,7 +63,7 @@ export default function Home() {
   ];
 
   const stats = [
-    { icon: Users, value: "5000+", label: "Patients" },
+    { icon: Users, value: "2000+", label: "Patients" },
     { icon: Award, value: "3+", label: "Experience" },
     { icon: Activity, value: "98%", label: "Success" },
     { icon: Heart, value: "24/7", label: "Support" },

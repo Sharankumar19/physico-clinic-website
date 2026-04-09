@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Calendar, Clock, Phone, Mail, User, MessageSquare, CheckCircle } from 'lucide-react';
-// import { supabase } from '../lib/supabase';
+import emailjs from "@emailjs/browser";
 
 export default function Appointment() {
   const [formData, setFormData] = useState({
@@ -24,36 +24,40 @@ export default function Appointment() {
     'General Consultation',
   ];
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
+  const handleSubmit = (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-  //   try {
-  //     const { error } = await supabase.from('appointments').insert([formData]);
-
-  //     if (error) throw error;
-
-  //     setIsSuccess(true);
-  //     setFormData({
-  //       name: '',
-  //       phone: '',
-  //       email: '',
-  //       service: '',
-  //       preferred_date: '',
-  //       message: '',
-  //     });
-
-  //     setTimeout(() => setIsSuccess(false), 5000);
-  //   } catch (error) {
-  //     console.error('Error submitting appointment:', error);
-  //     alert('Failed to submit appointment. Please try again or call us directly.');
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
+  emailjs
+    .send(
+      "service_q1lbgoa",   // 👉 from EmailJS
+      "template_4gbx04p",  // 👉 from EmailJS
+      formData,
+      "JkwOzs0NT5_PdrRqP"    // 👉 from EmailJS
+    )
+    .then(
+      () => {
+        setIsSuccess(true);
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          service: "",
+          preferred_date: "",
+          message: "",
+        });
+        setTimeout(() => setIsSuccess(false), 5000);
+      },
+      (error) => {
+        console.error(error);
+        alert("Failed to send appointment.");
+      }
+    )
+    .finally(() => setIsSubmitting(false));
+};
 
   const handleWhatsApp = () => {
-    const phone = '9025598738';
+    const phone = '9487200446';
     const message = encodeURIComponent(
       `Hi, I would like to book an appointment for ${formData.service || 'physiotherapy'}.`
     );
@@ -160,7 +164,7 @@ export default function Appointment() {
                   </div>
                 )}
 
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       <User className="inline h-4 w-4 mr-1" />
