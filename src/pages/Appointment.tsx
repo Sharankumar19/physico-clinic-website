@@ -30,10 +30,10 @@ export default function Appointment() {
 
   emailjs
     .send(
-      "service_q1lbgoa",   // 👉 from EmailJS
-      "template_4gbx04p",  // 👉 from EmailJS
+      "service_l4hsrsc",   // 👉 from EmailJS
+      "template_o9dh9u9",  // 👉 from EmailJS
       formData,
-      "JkwOzs0NT5_PdrRqP"    // 👉 from EmailJS
+      "9HLk4sn4Lh2oz9ac5"    // 👉 from EmailJS
     )
     .then(
       () => {
