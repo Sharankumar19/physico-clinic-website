@@ -6,7 +6,7 @@ export default function About() {
   const values = [
     {
       icon: Heart,
-      title: "Patient-Centered Care",
+      title: "Patient-Centered Care", 
       description:
         "Your comfort and recovery are our top priorities. We listen, understand, and create personalized treatment plans.",
     },

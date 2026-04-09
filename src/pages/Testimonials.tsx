@@ -19,7 +19,7 @@ const reviews = [
     review: "After 6 sessions, my shoulder pain has reduced a lot. Excellent treatment and friendly staff.",
     image_url: "",
     is_approved: true,
-    created_at: "2026-04-03T10:00:00.000000+00:00"
+    created_at: "2026-04-03T10:00:00.000000+00:00" 
   },
     {
     id: "c3d4e5f6-1111-2222-3333-444455556666",

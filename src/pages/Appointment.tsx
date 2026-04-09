@@ -24,7 +24,7 @@ export default function Appointment() {
     'General Consultation',
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
   e.preventDefault();
   setIsSubmitting(true);
 

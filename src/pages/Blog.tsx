@@ -29,7 +29,7 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   // ✅ FIX: Images array
-  const images = [
+  const images = [ 
     blogImage1,
     blogImage2,
     blogImage3,

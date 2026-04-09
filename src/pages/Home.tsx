@@ -21,7 +21,7 @@ const reviews = [
   },
   {
     id: "3",
-    name: "Abirami",
+    name: "Abirami",  
     service: "Neck Pain Treatment",
     rating: 5,
     review: "After 5 sessions, my pain has reduced a lot. Very satisfied.",
