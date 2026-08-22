@@ -1,12 +1,12 @@
 import { Award, GraduationCap, Heart, Users } from "lucide-react";
 import ourStoryImage from "../images/ourstory.jpg";
-import doctorImage from "../images/download.png"
+import doctorImage from "../images/download.png";
 
 export default function About() {
   const values = [
     {
       icon: Heart,
-      title: "Patient-Centered Care", 
+      title: "Patient-Centered Care",
       description:
         "Your comfort and recovery are our top priorities. We listen, understand, and create personalized treatment plans.",
     },
@@ -34,19 +34,27 @@ export default function About() {
     {
       name: "Dr. Sakthi Kumaran ",
       role: "Lead Physiotherapist",
-      image:doctorImage,
+      image: doctorImage,
       credentials: "MPT Neurological Physiotherapy",
       experience: "3+ years",
       specialization: "Orthopedic & Sports Rehabilitation",
     },
-      {
-    name: "Dr. Kamal Dhasan",
-    role: "Physiotherapist",
-    image:doctorImage,
-    credentials: "MPT Neurological Physiotherapy",
-    experience: "2+ years",
-    specialization: "Neurological Rehabilitation",
-  }
+    {
+      name: "Dr. Kamal Dhasan",
+      role: "Physiotherapist",
+      image: doctorImage,
+      credentials: "MPT Neurological Physiotherapy",
+      experience: "2+ years",
+      specialization: "Neurological Rehabilitation",
+    },
+    {
+      name: "Dr.Shalini Muthuvel,",
+      role: "pt MPT (Neuro)",
+      image: doctorImage,
+      credentials: "MPT Neurological Physiotherapy",
+      experience: "1+ years",
+      specialization: "Orthopedic & Sports Rehabilitation",
+    },
   ];
 
   return (
